@@ -104,7 +104,7 @@ public class MetalHook extends MetalAbility implements AddonAbility {
 		wasSprinting = player.isSprinting();
 
 		if (player.isSneaking()) {
-			player.setVelocity(new Vector());
+			GeneralMethods.setVelocity(this, player, new Vector());
 
 			if (System.currentTimeMillis() > (time + 1000)) {
 				removeAllArrows();
@@ -153,14 +153,14 @@ public class MetalHook extends MetalAbility implements AddonAbility {
 				player.setFlying(false);
 				double velocity = 0.8;
 
-				player.setVelocity(target.clone().normalize().multiply(velocity));
+				GeneralMethods.setVelocity(this, player, target.clone().normalize().multiply(velocity));
 			} else if (player.getLocation().distance(destination) < 2 && player.getLocation().distance(destination) >= 1) {
 				player.setFlying(false);
 				double velocity = 0.35;
 
-				player.setVelocity(target.clone().normalize().multiply(velocity));
+				GeneralMethods.setVelocity(this, player, target.clone().normalize().multiply(velocity));
 			} else {
-				player.setVelocity(new Vector(0, 0, 0));
+				GeneralMethods.setVelocity(this, player, new Vector(0, 0, 0));
 
 				if (player.getAllowFlight()) {
 					player.setFlying(true);

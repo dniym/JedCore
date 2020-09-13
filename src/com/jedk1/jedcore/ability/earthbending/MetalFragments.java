@@ -128,7 +128,7 @@ public class MetalFragments extends MetalAbility implements AddonAbility {
 
 		Item ii = player.getWorld().dropItemNaturally(source.getLocation().getBlock().getRelative(GeneralMethods.getCardinalDirection(direction)).getLocation(), is);
 		ii.setPickupDelay(Integer.MAX_VALUE);
-		ii.setVelocity(direction.multiply(2).normalize());
+		GeneralMethods.setVelocity(this, ii, direction.multiply(2).normalize());
 		playMetalbendingSound(ii.getLocation());
 		thrownFragments.add(ii);
 

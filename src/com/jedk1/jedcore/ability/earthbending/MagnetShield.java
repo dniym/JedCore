@@ -57,7 +57,7 @@ public class MagnetShield extends MetalAbility implements AddonAbility {
 
 				if (Arrays.asList(METAL).contains(i.getItemStack().getType())) {
 					Vector direction = GeneralMethods.getDirection(player.getLocation(), i.getLocation()).multiply(0.1);
-					i.setVelocity(direction);
+					GeneralMethods.setVelocity(this, i, direction);
 				}
 			}
 
@@ -66,7 +66,7 @@ public class MagnetShield extends MetalAbility implements AddonAbility {
 
 				if (Arrays.asList(METAL).contains(fb.getMaterial())) {
 					Vector direction = GeneralMethods.getDirection(player.getLocation(), fb.getLocation()).multiply(0.1);
-					fb.setVelocity(direction);
+					GeneralMethods.setVelocity(this, fb, direction);
 					fb.setDropItem(false);
 				}
 			}

@@ -151,7 +151,7 @@ public class Maelstrom extends WaterAbility implements AddonAbility, ComboAbilit
 				Location l = b.getLocation();
 				for(Entity entity : GeneralMethods.getEntitiesAroundPoint(l, 1.5D)){
 					Vector direction = GeneralMethods.getDirection(entity.getLocation(), origin.clone().subtract(-0.5, (levelStep - 1), -0.5));
-					entity.setVelocity(direction.multiply(0.2));
+					GeneralMethods.setVelocity(this, entity, direction.multiply(0.2));
 				}
 			}
 		}

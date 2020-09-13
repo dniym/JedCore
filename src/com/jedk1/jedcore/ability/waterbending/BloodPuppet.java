@@ -252,7 +252,7 @@ public class BloodPuppet extends BloodAbility implements AddonAbility {
 					LivingEntity e = (LivingEntity) target;
 					Location loc = puppet.getLocation().getBlock().getRelative(GeneralMethods.getCardinalDirection(GeneralMethods.getDirection(puppet.getEyeLocation(), e.getEyeLocation()))).getLocation();
 					Fireball fb = puppet.getWorld().spawn(loc, Fireball.class);
-					fb.setVelocity(GeneralMethods.getDirection(puppet.getEyeLocation(), e.getEyeLocation()).multiply(0.25));
+					GeneralMethods.setVelocity(this, fb, GeneralMethods.getDirection(puppet.getEyeLocation(), e.getEyeLocation()).multiply(0.25));
 					fb.setIsIncendiary(true);
 					fb.setShooter(puppet);
 					if (e instanceof Creature)
@@ -275,7 +275,7 @@ public class BloodPuppet extends BloodAbility implements AddonAbility {
 					LivingEntity e = (LivingEntity) target;
 					Location loc = puppet.getLocation().getBlock().getRelative(GeneralMethods.getCardinalDirection(GeneralMethods.getDirection(puppet.getEyeLocation(), e.getEyeLocation()))).getLocation();
 					Fireball fb = puppet.getWorld().spawn(loc, Fireball.class);
-					fb.setVelocity(GeneralMethods.getDirection(puppet.getEyeLocation(), e.getEyeLocation()).multiply(0.5));
+					GeneralMethods.setVelocity(this, fb, GeneralMethods.getDirection(puppet.getEyeLocation(), e.getEyeLocation()).multiply(0.5));
 					fb.setShooter(puppet);
 					if (e instanceof Creature)
 						((Creature) e).setTarget(puppet);
@@ -301,7 +301,7 @@ public class BloodPuppet extends BloodAbility implements AddonAbility {
 					Potion potion = new Potion(PotionType.INSTANT_DAMAGE);
 					potion.setSplash(true);
 					tp.setItem(potion.toItemStack(1));
-					tp.setVelocity(GeneralMethods.getDirection(puppet.getEyeLocation(), e.getEyeLocation()).multiply(0.125));
+					GeneralMethods.setVelocity(this, tp, GeneralMethods.getDirection(puppet.getEyeLocation(), e.getEyeLocation()).multiply(0.125));
 					tp.setShooter(puppet);
 					if (e instanceof Creature)
 						((Creature) e).setTarget(puppet);
@@ -383,9 +383,9 @@ public class BloodPuppet extends BloodAbility implements AddonAbility {
 		dz = location.getZ() - newlocation.getZ();
 		Vector vector = new Vector(dx, dy, dz);
 		if (distance > .5) {
-			puppet.setVelocity(vector.normalize().multiply(.5));
+			GeneralMethods.setVelocity(this, puppet, vector.normalize().multiply(.5));
 		} else {
-			puppet.setVelocity(new Vector(0, 0, 0));
+			GeneralMethods.setVelocity(this, puppet, new Vector(0, 0, 0));
 		}
 		puppet.setFallDistance(0);
 		if (puppet instanceof Creature) {

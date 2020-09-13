@@ -1,5 +1,6 @@
 package com.jedk1.jedcore.util;
 
+import com.projectkorra.projectkorra.GeneralMethods;
 import com.projectkorra.projectkorra.ability.Ability;
 
 import org.bukkit.Location;
@@ -27,7 +28,7 @@ public class TempFallingBlock {
 	@SuppressWarnings("deprecation")
 	public TempFallingBlock(Location location, BlockData data, Vector veloctiy, Ability ability, boolean expire) {
 		this.fallingblock = location.getWorld().spawnFallingBlock(location, data.clone());
-		this.fallingblock.setVelocity(veloctiy);
+		GeneralMethods.setVelocity(ability,	this.fallingblock, veloctiy);
 		this.fallingblock.setDropItem(false);
 		this.ability = ability;
 		this.creation = System.currentTimeMillis();

@@ -120,7 +120,7 @@ public class DaggerThrow extends ChiAbility implements AddonAbility {
 					subtract(player.getEyeLocation().toVector());
 
 			Arrow arrow = player.launchProjectile(Arrow.class);
-			arrow.setVelocity(vector);
+			GeneralMethods.setVelocity(this, arrow, vector);
 			arrow.getLocation().setDirection(vector);
 			arrow.setKnockbackStrength(0);
 			arrow.setBounce(false);
@@ -140,11 +140,13 @@ public class DaggerThrow extends ChiAbility implements AddonAbility {
 		if (GeneralMethods.isRegionProtectedFromBuild((Player) arrow.getShooter(), "DaggerThrow", arrow.getLocation())) {
 			return;
 		}
-
-		arrow.setVelocity(new Vector(0, 0, 0));
+		Player shooter = (Player) arrow.getShooter();
+		DaggerThrow dt = CoreAbility.getAbility(shooter, DaggerThrow.class);
+		
+		GeneralMethods.setVelocity(dt, arrow, new Vector(0, 0, 0));
 		entity.setNoDamageTicks(0);
 		double prevHealth = entity.getHealth();
-		Player shooter = (Player) arrow.getShooter();
+		
 		DamageAbility da = new DamageAbility(shooter);
 		DamageHandler.damageEntity(entity, damage, da);
 		da.remove();
@@ -156,7 +158,7 @@ public class DaggerThrow extends ChiAbility implements AddonAbility {
 			return;
 		}
 
-		DaggerThrow dt = CoreAbility.getAbility(shooter, DaggerThrow.class);
+		
 		if (dt == null) {
 			return;
 		}

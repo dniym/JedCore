@@ -284,7 +284,7 @@ public class WaterFlow extends WaterAbility implements AddonAbility, ComboAbilit
 				}
 				Location temp = directions.get(block);
 				Vector dir = GeneralMethods.getDirection(entity.getLocation(), directions.get(block).add(temp.getDirection().multiply(1.5)));
-				entity.setVelocity(dir.clone().normalize().multiply(1));
+				GeneralMethods.setVelocity(this, entity, dir.clone().normalize().multiply(1));
 				entity.setFallDistance(0f);
 			}
 

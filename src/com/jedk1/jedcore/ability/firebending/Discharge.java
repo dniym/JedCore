@@ -148,7 +148,7 @@ public class Discharge extends LightningAbility implements AddonAbility {
 							return true;
 						}
 						Vector knockbackVector = entity.getLocation().toVector().subtract(vec).normalize().multiply(0.8);
-						entity.setVelocity(knockbackVector);
+						GeneralMethods.setVelocity(this, entity, knockbackVector);
 
 						DamageHandler.damageEntity(entity, damage, this);
 

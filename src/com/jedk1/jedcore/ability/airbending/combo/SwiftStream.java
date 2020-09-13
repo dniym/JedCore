@@ -57,7 +57,7 @@ public class SwiftStream extends FlightAbility implements AddonAbility, ComboAbi
 		v = v.multiply(5);
 		v.add(new Vector(0, 0.2, 0));
 
-		GeneralMethods.setVelocity(player, v);
+		GeneralMethods.setVelocity(this,player, v);
 	}
 
 	public void affectNearby() {
@@ -71,7 +71,7 @@ public class SwiftStream extends FlightAbility implements AddonAbility, ComboAbi
 
 				v = v.add(new Vector(0, 0.15, 0));
 
-				GeneralMethods.setVelocity(e, v);
+				GeneralMethods.setVelocity(this,e, v);
 				affectedEntities.add((LivingEntity) e);
 				new HorizontalVelocityTracker(e, player, 200, this);
 			}

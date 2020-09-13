@@ -254,7 +254,7 @@ public class EarthLine extends EarthAbility implements AddonAbility {
 						return;
 					}
 					if ((entity instanceof LivingEntity) && entity.getEntityId() != player.getEntityId()) {
-						entity.setVelocity(push.normalize().multiply(2));
+						GeneralMethods.setVelocity(this, entity, push.normalize().multiply(2));
 						DamageHandler.damageEntity(entity, damage, this);
 						hitted = true;
 					}

@@ -270,7 +270,7 @@ public class MetalShred extends MetalAbility implements AddonAbility {
 						continue;
 					}
 					DamageHandler.damageEntity(e, damage, this);
-					e.setVelocity(e.getVelocity().add(player.getLocation().getDirection().add(new Vector(0, 0.1, 0))));
+					GeneralMethods.setVelocity(this, e, e.getVelocity().add(player.getLocation().getDirection().add(new Vector(0, 0.1, 0))));
 				}
 
 				lastBlock = b;

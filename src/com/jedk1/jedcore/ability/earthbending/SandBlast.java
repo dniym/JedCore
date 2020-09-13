@@ -163,8 +163,8 @@ public class SandBlast extends SandAbility implements AddonAbility {
 
 		x = (rand.nextBoolean()) ? -x : x;
 		z = (rand.nextBoolean()) ? -z : z;
-
-		//fblock.setVelocity(direction.clone().add(new Vector(x, 0.2, z)));
+		
+		//GeneralMethods.setVelocity(this, fblock, direction.clone().add(new Vector(x, 0.2, z)));
 		//fblock.setDropItem(false);
 		//fblocks.put(fblock, player);
 

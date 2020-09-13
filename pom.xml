@@ -30,13 +30,6 @@
       <version>1.15-R0.1-SNAPSHOT</version>
       <scope>provided</scope>
     </dependency>
-    <!-- ProjectKorra -->
-    <dependency>
-      <groupId>com.projectkorra</groupId>
-      <artifactId>projectkorra</artifactId>
-      <version>1.8.9</version>
-      <scope>provided</scope>
-    </dependency>
   </dependencies>
 
   <build>

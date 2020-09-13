@@ -93,7 +93,7 @@ public class ESAir extends AvatarAbility implements AddonAbility {
 			for (Entity entity : GeneralMethods.getEntitiesAroundPoint(location, 2.5)) {
 				if (entity instanceof LivingEntity && entity.getEntityId() != player.getEntityId() && !(entity instanceof ArmorStand) && !GeneralMethods.isRegionProtectedFromBuild(this, entity.getLocation()) && !((entity instanceof Player) && Commands.invincible.contains(((Player) entity).getName()))) {
 					DamageHandler.damageEntity(entity, damage, this);
-					entity.setVelocity(location.getDirection().multiply(knockback));
+					GeneralMethods.setVelocity(this, entity, location.getDirection().multiply(knockback));
 					travelled = range;
 				}
 			}

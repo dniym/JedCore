@@ -2,6 +2,7 @@ package com.jedk1.jedcore.ability.waterbending;
 
 import com.jedk1.jedcore.JedCore;
 import com.jedk1.jedcore.configuration.JedCoreConfig;
+import com.projectkorra.projectkorra.GeneralMethods;
 import com.projectkorra.projectkorra.ability.AddonAbility;
 import com.projectkorra.projectkorra.ability.WaterAbility;
 import com.projectkorra.projectkorra.util.BlockSource;
@@ -117,7 +118,7 @@ public class WakeFishing extends WaterAbility implements AddonAbility {
 
 			Item item = player.getWorld().dropItemNaturally(focusedBlock.getLocation().clone().add(.5, 1.5, .5), fish);
 			Vector v = player.getEyeLocation().toVector().subtract(focusedBlock.getLocation().clone().add(.5, 1.5, .5).toVector());
-			item.setVelocity(v.multiply(.15));
+			GeneralMethods.setVelocity(this, item, v.multiply(.15));
 		}
 	}
 

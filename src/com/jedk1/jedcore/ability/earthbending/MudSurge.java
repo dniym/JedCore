@@ -380,8 +380,7 @@ public class MudSurge extends EarthAbility implements AddonAbility {
 
 						blind.add((Player) e);
 					}
-
-					e.setVelocity(fb.getVelocity().multiply(0.8));
+					GeneralMethods.setVelocity(this, e, fb.getVelocity().multiply(0.8));
 					tfb.remove();
 				}
 			}

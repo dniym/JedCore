@@ -44,7 +44,7 @@ public class AirSlam extends AirAbility implements AddonAbility, ComboAbility {
 				return;
 			}
 			this.target = (LivingEntity) target;
-			target.setVelocity(new Vector(0, 2, 0));
+			GeneralMethods.setVelocity(this, target, new Vector(0, 2, 0));
 		} else {
 			return;
 		}
@@ -69,7 +69,7 @@ public class AirSlam extends AirAbility implements AddonAbility, ComboAbility {
 		}
 		if (System.currentTimeMillis() > time + 50) {
 			Vector dir = player.getLocation().getDirection();
-			GeneralMethods.setVelocity(target, new Vector(dir.getX(), 0.05, dir.getZ()).multiply(power));
+			GeneralMethods.setVelocity(this,target, new Vector(dir.getX(), 0.05, dir.getZ()).multiply(power));
 			new HorizontalVelocityTracker(target, player, 0L, this);
 			new ThrownEntityTracker(this, target, player, 0L);
 			target.setFallDistance(0);

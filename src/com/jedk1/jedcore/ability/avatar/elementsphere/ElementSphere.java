@@ -165,7 +165,7 @@ public class ElementSphere extends AvatarAbility implements AddonAbility, MultiA
 		}
 		player.setFallDistance(0);
 		if (player.isSneaking())
-			player.setVelocity(player.getLocation().getDirection().multiply(speed));
+			GeneralMethods.setVelocity(this, player, player.getLocation().getDirection().multiply(speed));
 
 		Block block = getGround();
 		if (block != null) {
@@ -180,7 +180,7 @@ public class ElementSphere extends AvatarAbility implements AddonAbility, MultiA
 		for (Entity entity : GeneralMethods.getEntitiesAroundPoint(location, 2.5)) {
 			if (!GeneralMethods.isRegionProtectedFromBuild(player, "ElementSphere", entity.getLocation())) {
 				if (entity instanceof LivingEntity && entity.getEntityId() != player.getEntityId() && !(entity instanceof ArmorStand)) {
-					entity.setVelocity(entity.getLocation().toVector().subtract(player.getLocation().toVector()).multiply(1));
+					GeneralMethods.setVelocity(this, entity, entity.getLocation().toVector().subtract(player.getLocation().toVector()).multiply(1));
 				}
 			}
 		}

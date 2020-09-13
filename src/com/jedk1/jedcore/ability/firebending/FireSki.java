@@ -135,8 +135,7 @@ public class FireSki extends FireAbility implements AddonAbility {
 				}
 			}
 		}
-
-		player.setVelocity(travel);
+		GeneralMethods.setVelocity(this, player, travel);
 		player.setFallDistance(0);
 	}
 

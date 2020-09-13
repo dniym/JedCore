@@ -3,6 +3,7 @@ package com.jedk1.jedcore.ability.airbending;
 import com.jedk1.jedcore.JedCore;
 import com.jedk1.jedcore.collision.CollisionDetector;
 import com.jedk1.jedcore.configuration.JedCoreConfig;
+import com.projectkorra.projectkorra.GeneralMethods;
 import com.projectkorra.projectkorra.ability.AddonAbility;
 import com.projectkorra.projectkorra.ability.AirAbility;
 import com.projectkorra.projectkorra.airbending.AirSpout;
@@ -113,8 +114,7 @@ public class AirGlide extends AirAbility implements AddonAbility {
 			double distanceFromPlayer = speed;
 			Vector shootFromPlayer = new Vector(directionVector.getX() * distanceFromPlayer, -fallSpeed, directionVector.getZ() * distanceFromPlayer);
 			firstLocation.add(shootFromPlayer.getX(), shootFromPlayer.getY(), shootFromPlayer.getZ());
-
-			player.setVelocity(shootFromPlayer);
+			GeneralMethods.setVelocity(this, player, shootFromPlayer);
 			playAirbendingParticles(player.getLocation(), particles);
 		} else if (!isTransparent(player.getLocation().getBlock().getRelative(BlockFace.DOWN))) {
 			remove();

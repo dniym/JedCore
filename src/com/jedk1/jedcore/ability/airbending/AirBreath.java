@@ -141,7 +141,7 @@ public class AirBreath extends AirAbility implements AddonAbility {
 			if (!isLocationSafe(loc)) {
 				if (!isTransparent(loc.getBlock())) {
 					if (player.getLocation().getPitch() > 30) {
-						player.setVelocity(player.getLocation().getDirection().multiply(-launch));
+						GeneralMethods.setVelocity(this, player, player.getLocation().getDirection().multiply(-launch));
 					}
 				}
 				return;
@@ -170,7 +170,7 @@ public class AirBreath extends AirAbility implements AddonAbility {
 					}
 
 					dir.multiply(knockback);
-					entity.setVelocity(dir);
+					GeneralMethods.setVelocity(this, entity, dir);
 				}
 			}
 

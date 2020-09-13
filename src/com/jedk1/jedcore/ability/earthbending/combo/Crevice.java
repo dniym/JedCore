@@ -202,7 +202,7 @@ public class Crevice extends EarthAbility implements AddonAbility, ComboAbility 
 			}
 
 			for (Entity entity : GeneralMethods.getEntitiesAroundPoint(tempLoc, 1)) {
-				entity.setVelocity(new Vector(0, -0.75, 0));
+				GeneralMethods.setVelocity(this, entity, new Vector(0, -0.75, 0));
 			}
 
 
@@ -221,7 +221,7 @@ public class Crevice extends EarthAbility implements AddonAbility, ComboAbility 
 			for (TempBlock tb : tbs) {
 				tb.revertBlock();
 				for (Entity entity : GeneralMethods.getEntitiesAroundPoint(tb.getLocation(), 1)) {
-					entity.setVelocity(new Vector(0, 0.7, 0));
+					GeneralMethods.setVelocity(this, entity, new Vector(0, 0.7, 0));
 				}
 				new RegenTempBlock(tb.getBlock(), Material.AIR, Material.AIR.createBlockData(), i * 50);
 			}

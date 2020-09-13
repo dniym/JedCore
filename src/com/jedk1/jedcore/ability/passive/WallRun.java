@@ -4,6 +4,7 @@ import com.jedk1.jedcore.JCMethods;
 import com.jedk1.jedcore.JedCore;
 import com.jedk1.jedcore.configuration.JedCoreConfig;
 import com.projectkorra.projectkorra.Element;
+import com.projectkorra.projectkorra.GeneralMethods;
 import com.projectkorra.projectkorra.ability.AddonAbility;
 import com.projectkorra.projectkorra.ability.AirAbility;
 import com.projectkorra.projectkorra.ability.ChiAbility;
@@ -143,7 +144,7 @@ public class WallRun extends ChiAbility implements AddonAbility {
 
 		Vector dir = player.getLocation().getDirection();
 		dir.multiply(1.15);
-		player.setVelocity(dir);
+		GeneralMethods.setVelocity(this, player, dir);
 	}
 	
 	public long getCooldown() {

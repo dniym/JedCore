@@ -51,9 +51,9 @@ public class ThrownEntityTracker {
 			nearby.remove(instigator);
 		}
 		if (nearby.size() != 0) {
-			entity.setVelocity(thisVelocity.multiply(0.5D));
+			GeneralMethods.setVelocity(ability, entity, thisVelocity.multiply(0.5D));
 			for(Entity e : nearby){
-				e.setVelocity(entity.getVelocity().multiply(0.25D).add(GeneralMethods.getDirection(entity.getLocation(), e.getLocation()).multiply(2)));
+				GeneralMethods.setVelocity(ability, e, entity.getVelocity().multiply(0.25D).add(GeneralMethods.getDirection(entity.getLocation(), e.getLocation()).multiply(2)));
 				if (e instanceof LivingEntity) {
 					DamageHandler.damageEntity(e, 2D, ability);
 				}
