@@ -345,6 +345,11 @@ public class ElementSphere extends AvatarAbility implements AddonAbility, MultiA
 	}
 
 	@Override
+	public boolean requireAvatar() {
+		return false;
+	}
+	
+	@Override
 	public String getName() {
 		return "ElementSphere";
 	}

@@ -43,6 +43,7 @@ public class FrostBreath extends IceAbility implements AddonAbility {
 			Biome.NETHER,
 			Biome.BADLANDS,
 			Biome.BADLANDS_PLATEAU,
+			Biome.WOODED_BADLANDS_PLATEAU,
 			Biome.ERODED_BADLANDS,
 			Biome.SAVANNA,
 			Biome.SAVANNA_PLATEAU
