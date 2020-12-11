@@ -228,7 +228,6 @@ public class EarthShard extends EarthAbility implements AddonAbility {
 		}
 	}
 
-	@SuppressWarnings("deprecation")
 	public void throwShard() {
 		if (isThrown || tblockTracker.size() > readyBlocksTracker.size()) {
 			return;

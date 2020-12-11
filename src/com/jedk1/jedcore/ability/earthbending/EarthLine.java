@@ -58,6 +58,8 @@ public class EarthLine extends EarthAbility implements AddonAbility {
 	public EarthLine(Player player) {
 		super(player);
 
+		if (!isEnabled()) return;
+
 		if (!bPlayer.canBend(this)) {
 			return;
 		}
