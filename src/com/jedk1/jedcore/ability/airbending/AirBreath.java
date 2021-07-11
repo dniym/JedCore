@@ -6,6 +6,7 @@ import com.jedk1.jedcore.configuration.JedCoreConfig;
 import com.projectkorra.projectkorra.GeneralMethods;
 import com.projectkorra.projectkorra.ability.AddonAbility;
 import com.projectkorra.projectkorra.ability.AirAbility;
+import com.projectkorra.projectkorra.attribute.Attribute;
 import com.projectkorra.projectkorra.command.Commands;
 import com.projectkorra.projectkorra.util.DamageHandler;
 import com.projectkorra.projectkorra.util.ParticleEffect;
@@ -21,14 +22,14 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.Vector;
 
-import java.util.Random;
-
 public class AirBreath extends AirAbility implements AddonAbility {
 
 	private long time;
 	private boolean isAvatar;
 
+	@Attribute(Attribute.COOLDOWN)
 	private long cooldown;
+	@Attribute(Attribute.DURATION)
 	private long duration;
 	private int particles;
 
@@ -37,10 +38,14 @@ public class AirBreath extends AirAbility implements AddonAbility {
 	private boolean extinguishMobs;
 
 	private boolean damageEnabled;
+	@Attribute(Attribute.DAMAGE)
 	private double playerDamage;
+	@Attribute(Attribute.DAMAGE)
 	private double mobDamage;
 
+	@Attribute(Attribute.KNOCKBACK)
 	private double knockback;
+	@Attribute(Attribute.RANGE)
 	private int range;
 
 	private double launch;

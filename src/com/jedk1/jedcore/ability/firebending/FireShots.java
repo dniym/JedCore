@@ -13,6 +13,7 @@ import com.jedk1.jedcore.util.FireTick;
 import com.projectkorra.projectkorra.ability.CoreAbility;
 import com.projectkorra.projectkorra.ability.util.Collision;
 import com.projectkorra.projectkorra.airbending.AirShield;
+import com.projectkorra.projectkorra.attribute.Attribute;
 import com.projectkorra.projectkorra.firebending.util.FireDamageTimer;
 import org.bukkit.Location;
 import org.bukkit.configuration.ConfigurationSection;
@@ -23,6 +24,7 @@ import com.projectkorra.projectkorra.Element.SubElement;
 import com.projectkorra.projectkorra.GeneralMethods;
 import com.projectkorra.projectkorra.ability.Ability;
 import com.projectkorra.projectkorra.ability.AddonAbility;
+import com.projectkorra.projectkorra.ability.BlueFireAbility;
 import com.projectkorra.projectkorra.ability.FireAbility;
 import com.projectkorra.projectkorra.util.DamageHandler;
 import com.projectkorra.projectkorra.util.ParticleEffect;
@@ -32,11 +34,17 @@ import static java.util.stream.Collectors.toList;
 
 public class FireShots extends FireAbility implements AddonAbility {
 	private List<FireShot> shots = new ArrayList<>();
+	@Attribute(Attribute.COOLDOWN)
 	private long cooldown;
+	@Attribute("MaxShots")
 	private int startAmount;
+	@Attribute(Attribute.FIRE_TICK)
 	private int fireticks;
+	@Attribute(Attribute.RANGE)
 	private int range;
+	@Attribute(Attribute.DAMAGE)
 	private double damage;
+	@Attribute("CollisionRadius")
 	private double collisionRadius;
 
 	public int amount;
@@ -63,6 +71,22 @@ public class FireShots extends FireAbility implements AddonAbility {
 		range = config.getInt("Abilities.Fire.FireShots.Range");
 		damage = config.getDouble("Abilities.Fire.FireShots.Damage");
 		collisionRadius = config.getDouble("Abilities.Fire.FireShots.CollisionRadius");
+		
+		applyModifiers();
+	}
+	
+	private void applyModifiers() {
+		if (bPlayer.canUseSubElement(SubElement.BLUE_FIRE)) {
+			cooldown *= BlueFireAbility.getCooldownFactor();
+			range *= BlueFireAbility.getRangeFactor();
+			damage *= BlueFireAbility.getDamageFactor();
+		}
+		
+		if (isDay(player.getWorld())) {
+			cooldown -= ((long) getDayFactor(cooldown) - cooldown);
+			range = (int) getDayFactor(range);
+			damage = getDayFactor(damage);
+		}
 	}
 	
 	public class FireShot {

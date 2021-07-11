@@ -4,6 +4,7 @@ import com.jedk1.jedcore.JedCore;
 import com.jedk1.jedcore.configuration.JedCoreConfig;
 import com.projectkorra.projectkorra.ability.AddonAbility;
 import com.projectkorra.projectkorra.ability.WaterAbility;
+import com.projectkorra.projectkorra.attribute.Attribute;
 import com.projectkorra.projectkorra.util.BlockSource;
 import com.projectkorra.projectkorra.util.ClickType;
 import com.projectkorra.projectkorra.util.ParticleEffect;
@@ -30,8 +31,11 @@ public class WakeFishing extends WaterAbility implements AddonAbility {
 	private Location location;
 	private int point;
 
+	@Attribute(Attribute.COOLDOWN)
 	private long cooldown;
+	@Attribute(Attribute.DURATION)
 	private long duration;
+	@Attribute(Attribute.RANGE)
 	private long range;
 	private long time;
 
@@ -56,6 +60,15 @@ public class WakeFishing extends WaterAbility implements AddonAbility {
 		cooldown = config.getLong("Abilities.Water.WakeFishing.Cooldown");
 		duration = config.getLong("Abilities.Water.WakeFishing.Duration");
 		range = config.getLong("Abilities.Water.WakeFishing.Range");
+		
+		applyModifiers();
+	}
+	
+	private void applyModifiers() {
+		if (isNight(player.getWorld())) {
+			cooldown -= ((long) getNightFactor(cooldown) - cooldown);
+			range = (long) getNightFactor(range);
+		}
 	}
 
 	@SuppressWarnings("deprecation")

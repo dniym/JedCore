@@ -5,6 +5,7 @@ import com.jedk1.jedcore.configuration.JedCoreConfig;
 import com.projectkorra.projectkorra.GeneralMethods;
 import com.projectkorra.projectkorra.ability.AddonAbility;
 import com.projectkorra.projectkorra.ability.IceAbility;
+import com.projectkorra.projectkorra.attribute.Attribute;
 import com.projectkorra.projectkorra.util.DamageHandler;
 import com.projectkorra.projectkorra.util.ParticleEffect;
 
@@ -18,11 +19,15 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 public class IceClaws extends IceAbility implements AddonAbility {
-	
+
+	@Attribute(Attribute.COOLDOWN)
 	private long cooldown;
+	@Attribute(Attribute.CHARGE_DURATION)
 	private long chargeUp;
 	private int slowDur;
+	@Attribute(Attribute.DAMAGE)
 	private double damage;
+	@Attribute(Attribute.RANGE)
 	private double range;
 	private boolean throwable;
 
@@ -59,6 +64,14 @@ public class IceClaws extends IceAbility implements AddonAbility {
 		damage = config.getDouble("Abilities.Water.IceClaws.Damage");
 		range = config.getDouble("Abilities.Water.IceClaws.Range");
 		throwable = config.getBoolean("Abilities.Water.IceClaws.Throwable");
+		
+		applyModifiers();
+	}
+	
+	private void applyModifiers() {
+		cooldown -= ((long) getNightFactor(cooldown) - cooldown);
+		damage = getNightFactor(damage);
+		range = getNightFactor(range);
 	}
 
 	@Override

@@ -9,15 +9,13 @@ import com.jedk1.jedcore.util.FireTick;
 import com.jedk1.jedcore.util.MaterialUtil;
 import com.jedk1.jedcore.util.RegenTempBlock;
 import com.projectkorra.projectkorra.GeneralMethods;
-import com.projectkorra.projectkorra.ProjectKorra;
 import com.projectkorra.projectkorra.Element.SubElement;
 import com.projectkorra.projectkorra.ability.AddonAbility;
 import com.projectkorra.projectkorra.ability.AirAbility;
 import com.projectkorra.projectkorra.ability.CombustionAbility;
-import com.projectkorra.projectkorra.ability.CoreAbility;
-import com.projectkorra.projectkorra.ability.FireAbility;
 import com.projectkorra.projectkorra.ability.WaterAbility;
 import com.projectkorra.projectkorra.ability.util.Collision;
+import com.projectkorra.projectkorra.attribute.Attribute;
 import com.projectkorra.projectkorra.util.DamageHandler;
 import com.projectkorra.projectkorra.util.ParticleEffect;
 import com.projectkorra.projectkorra.util.TempBlock;
@@ -39,11 +37,14 @@ import java.util.Random;
 public class Combustion extends CombustionAbility implements AddonAbility {
 	private State state;
 	private Location location;
+	@Attribute(Attribute.COOLDOWN)
 	private long cooldown;
 	private CompositeRemovalPolicy removalPolicy;
 
 	public Combustion(Player player) {
 		super(player);
+
+		if (!isEnabled()) return;
 
 		if (this.player == null || !bPlayer.canBend(this) || !bPlayer.canCombustionbend() || hasAbility(player, Combustion.class)) {
 			return;
@@ -147,7 +148,7 @@ public class Combustion extends CombustionAbility implements AddonAbility {
 		ConfigurationSection config = JedCoreConfig.getConfig(this.player);
 		return "* JedCore Addon *\n" + config.getString("Abilities.Fire.Combustion.Description");
 	}
-	
+
 	@Override
 	public void load() {
 
@@ -157,7 +158,7 @@ public class Combustion extends CombustionAbility implements AddonAbility {
 	public void stop() {
 
 	}
-	
+
 	@Override
 	public boolean isEnabled() {
 		ConfigurationSection config = JedCoreConfig.getConfig(this.player);

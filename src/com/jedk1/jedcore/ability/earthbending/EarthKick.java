@@ -12,6 +12,7 @@ import com.projectkorra.projectkorra.ability.AddonAbility;
 import com.projectkorra.projectkorra.ability.EarthAbility;
 import com.projectkorra.projectkorra.ability.ElementalAbility;
 import com.projectkorra.projectkorra.ability.util.Collision;
+import com.projectkorra.projectkorra.attribute.Attribute;
 import com.projectkorra.projectkorra.util.*;
 
 import org.bukkit.Location;
@@ -32,14 +33,17 @@ import static java.util.stream.Collectors.toList;
 public class EarthKick extends EarthAbility implements AddonAbility {
 	private List<TempFallingBlock> temps = new ArrayList<>();
 
-	private Material material;
 	private BlockData materialData;
 	private Location location;
 	private Random rand = new Random();
 
+	@Attribute(Attribute.COOLDOWN)
 	private long cooldown;
+	@Attribute("MaxShots")
 	private int earthBlocks;
+	@Attribute(Attribute.DAMAGE)
 	private double damage;
+	@Attribute("CollisionRadius")
 	private double entityCollisionRadius;
 	private Block block;
 
@@ -81,7 +85,6 @@ public class EarthKick extends EarthAbility implements AddonAbility {
 		}
 
 		if (block != null && !isMetal(block)) {
-			material = block.getType();
 			materialData = block.getBlockData().clone();
 			location.setX(block.getX() + 0.5);
 			location.setY(block.getY());
